@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: connessioni-deployment
+  namespace: asw-project
+  labels:
+    app: connessioni
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: connessioni
+  template:
+    metadata:
+      labels:
+        app: connessioni
+    spec:
+      containers:
+      - name: asw-connessioni
+        image: cmik/connessioni
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8180
