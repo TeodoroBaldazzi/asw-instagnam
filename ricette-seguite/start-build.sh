@@ -6,6 +6,6 @@ gradle clean
 
 gradle build
 
-docker build -t cmik/connessioni .
+docker build -t cmik/ricette-seguite .
 
-docker push cmik/connessioni
+docker push cmik/ricette-seguite
