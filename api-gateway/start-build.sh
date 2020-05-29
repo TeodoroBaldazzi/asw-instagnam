@@ -6,6 +6,6 @@ gradle clean
 
 gradle build
 
-docker build -t cmik/connessioni .
+docker build -t cmik/api-gateway .
 
-docker push cmik/connessioni
+docker push cmik/api-gateway

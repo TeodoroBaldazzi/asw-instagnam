@@ -50,7 +50,7 @@ Vi lascio alcuni comandi utili:
 
 
 
-Vi consiglio inoltre di ricordarvi di startare oltre a docker anche kubernates, lo start di docker non è strettamente legato allo start di k8s. 
+Vi consiglio inoltre di ricordarvi di startare oltre a docker anche kubernetes, lo start di docker non è strettamente legato allo start di k8s. 
 Verificare che il context sia *docker desktop* e che il local cluster sia nello stato *enable*.
 
 
