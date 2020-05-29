@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ricette-deployment
+  namespace: asw-project
+  labels:
+    app: ricette
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ricette
+  template:
+    metadata:
+      labels:
+        app: ricette
+    spec:
+      containers:
+      - name: asw-ricette
+        image: cmik/ricette
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8180

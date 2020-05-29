@@ -5,8 +5,7 @@ spring:
     name: ricette
   cloud:
     consul:
-      host: localhost
-      port: 8500
+      host: consul-service.asw-project.svc.cluster.local
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
         healthCheckPath: /actuator/health
