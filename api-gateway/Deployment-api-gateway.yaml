@@ -20,4 +20,4 @@ spec:
         image: cmik/api-gateway
         imagePullPolicy: Always
         ports:
-        - containerPort: 8180
+        - containerPort: 8080
