@@ -48,7 +48,9 @@ Vi lascio alcuni comandi utili:
 
 7. per tutti gli altri comandi inserire il namespace in cui stiamo lavorando ` --namespace=asw-project `.
 
-
+Per la comunicazione tra microservizi non va usato un indirizzo ip e una porta, ma nell'application properties nel tag host va inserito: `<nome del service del microservizio con cui dovete comunicare>.asw-project.svc.cluster.local` questo ovviamente vale anche per la connessione con il db.
+  
+ex. consul-service.asw-project.svc.cluster.local
 
 Vi consiglio inoltre di ricordarvi di startare oltre a docker anche kubernetes, lo start di docker non è strettamente legato allo start di k8s. 
 Verificare che il context sia *docker desktop* e che il local cluster sia nello stato *enable*.
