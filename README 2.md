@@ -22,7 +22,7 @@ modificando  *image: cmik/..* con *image: <user docker/registry>/..*
 
 Il lancio di ogni file .sh richiede il posizionamento all'interno della directory dove si trova il file script stesso.
 
-1. lanciare tutti i file start-build.sh (se non è stato modificato codice non è necessario eseguire questo file, potete direttamente eseguire gli script per la creazione dei container, che prenderanno l'ultima immagine nel vostro o nel mio registry Docker).
+1. lanciare tutti i file start-build.sh (se non è stato modificato codice non è necessario eseguire questo file, potete direttamente eseguire gli script per la creazione dei container, che prenderanno l'ultima immagine nel vostro o nel mio registry Docker, vi consiglio per le volte successive di eseguirlo sempre soprattuto se il git pull ha riportato la presenza di modifiche).
 
 2. posizionatevi sul main project directory (asw-instagnam) ed eseguite  `start-consul-container.sh ` , in una finestra del terminale dedicato, l'ultimo comando nel file .sh rimarrà appeso per tutto il tempo quindi  **non stoppatelo**.
 
