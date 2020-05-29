@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+  namespace: asw-project
+  labels:
+    app: api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: asw-api-gateway
+        image: cmik/api-gateway
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8180
