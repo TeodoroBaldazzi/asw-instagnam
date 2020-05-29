@@ -8,4 +8,4 @@ kubectl apply -f Deployment-consul.yaml
 
 kubectl apply -f Service-consul.yaml
 
-kubectl port-forward --namespace=asw-project $(kubectl get pods --namespace=asw-project -l=app=consul | awk '{print $1}' | grep consul) 7000:8500
+kubectl port-forward --namespace=asw-project $(kubectl get pods --namespace=asw-project -l=app=consul | awk '{print $1}' | grep consul) 8500:8500
