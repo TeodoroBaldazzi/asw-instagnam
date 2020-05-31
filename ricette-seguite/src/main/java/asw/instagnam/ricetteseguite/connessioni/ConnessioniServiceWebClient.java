@@ -28,7 +28,7 @@ public class ConnessioniServiceWebClient implements ConnessioniService {
                 .get()
 				.uri(uriBuilder -> uriBuilder 
 					.scheme("http")
-					.host("connessioni")
+					.host("connessioni-service.asw-project.svc.cluster.local:8080")
 					.path("/connessioni")
 					.queryParam("follower", follower)
 					.build())

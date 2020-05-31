@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: asw-ricette-seguite
-        image: cmik/ricette-seguite
+        image: cmik/ricette-seguite:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8180

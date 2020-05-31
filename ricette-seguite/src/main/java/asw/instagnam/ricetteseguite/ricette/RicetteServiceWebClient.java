@@ -28,7 +28,7 @@ public class RicetteServiceWebClient implements RicetteService {
                 .get()
 				.uri(uriBuilder -> uriBuilder 
 					.scheme("http")
-					.host("ricette")
+					.host("ricette-service.asw-project.svc.cluster.local:8080")
 					.path("/ricette")
 					.queryParam("autore", autore)
 					.build())
