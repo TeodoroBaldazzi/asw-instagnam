@@ -4,6 +4,6 @@ spring:
   application: 
     name: ricette-seguite
 
-server: 
-  port: ${PORT:${SERVER_PORT:0}}
-#  port: 8080
+server:
+  #port: ${PORT:${SERVER_PORT:0}}
+  port: 8080

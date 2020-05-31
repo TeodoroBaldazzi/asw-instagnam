@@ -4,17 +4,10 @@ metadata:
   name: connessioni-service
   namespace: asw-project
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: connessioni
   ports:
-  - name: web-interface
-    protocol: TCP
-    nodePort: 30700
-    port: 8080
+  - port: 8080
     targetPort: 8080
-  - name: remote-java-api
-    protocol: TCP
-    nodePort: 30800
-    port: 50053
-    targetPort: 50053
+  
