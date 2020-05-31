@@ -4,17 +4,10 @@ metadata:
   name: ricette-service
   namespace: asw-project
 spec:
-  type: NodePort
+  type: ClusterIP 
   selector:
     app: ricette
   ports:
-  - name: web-interface
-    protocol: TCP
-    nodePort: 30500
-    port: 8080
+  - port: 8080
     targetPort: 8080
-  - name: remote-java-api
-    protocol: TCP
-    nodePort: 30600
-    port: 5052
-    targetPort: 5052
+ 
