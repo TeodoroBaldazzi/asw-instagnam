@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: asw-api-gateway
-        image: cmik/api-gateway
+        image: cmik/api-gateway:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
