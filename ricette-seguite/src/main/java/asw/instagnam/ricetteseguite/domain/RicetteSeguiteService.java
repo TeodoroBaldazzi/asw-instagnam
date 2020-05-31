@@ -1,29 +1,41 @@
 package asw.instagnam.ricetteseguite.domain;
 
-import org.springframework.stereotype.Service;
+import asw.instagnam.ricetteseguite.domain.exceptions.UserNotFoundException;
+import asw.instagnam.ricetteseguite.domain.repository.RicettaRepository;
+import asw.instagnam.ricetteseguite.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*; 
+import java.util.Set;
 
 @Service 
 public class RicetteSeguiteService {
 
-	@Autowired 
-	private ConnessioniService connessioniService;
+	@Autowired
+	private RicettaRepository ricettaRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-	@Autowired 
-	private RicetteService ricetteService;
-
-	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
-	public Collection<Ricetta> getRicetteSeguite(String utente) {
-		Collection<Ricetta> ricette = new ArrayList<>(); 
-		Collection<Connessione> connessioni = connessioniService.getConnessioniByFollower(utente); 
-		for (Connessione connessione : connessioni) {
-			String followed = connessione.getFollowed();
-			Collection<Ricetta> ricetteByFollowed = ricetteService.getRicetteByAutore(followed);
-			ricette.addAll(ricetteByFollowed);
-		}
-		return ricette; 
+	public void addConnessione(String followedId, String followerId) {
+		User followed = getOrCreateUser(followedId);
+		User follower = getOrCreateUser(followerId);
+		follower.addFollowing(followed);
 	}
-	
+
+	public void addRicetta(Long id, String autore, String titolo) {
+		User user = getOrCreateUser(autore);
+		user.addRicetta(createRicetta(id, autore, titolo));
+	}
+
+	public Set<Ricetta> getRicetteSeguite(String utente) throws UserNotFoundException {
+		return userRepository.findById(utente).orElseThrow(UserNotFoundException::new).getAllRicetteSeguite();
+	}
+
+	private User getOrCreateUser(String userId){
+		return userRepository.findById(userId).orElse(userRepository.save(new User(userId)));
+	}
+
+	private Ricetta createRicetta(Long id, String autore, String titolo){
+		return new Ricetta(id, autore, titolo);
+	}
 }

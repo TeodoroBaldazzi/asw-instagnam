@@ -1,13 +1,27 @@
 package asw.instagnam.ricetteseguite.domain;
 
-import lombok.*; 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/* Ricetta (in formato breve). */ 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 @Data @NoArgsConstructor
 public class Ricetta {
 
-	private Long id; 
-	private String autore; 
-	private String titolo; 
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String autore;
+	private String titolo;
+
+	public Ricetta(Long id, String autore, String titolo) {
+		this();
+		this.id = id;
+		this.autore = autore; 
+		this.titolo = titolo;
+	}
 	
 }
