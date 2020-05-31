@@ -1,22 +1,29 @@
 package asw.instagnam.connessioni.domain;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import asw.instagnam.common.event.ConnessioneCreatedEvent;
+import asw.instagnam.common.producer.KafkaEventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import java.util.logging.Logger; 
-import java.util.*; 
+import java.util.Collection;
 
 @Service
 public class ConnessioniService {
 
+	private final ConnessioniRepository connessioniRepository;
+	private final KafkaEventProducer producer;
+
 	@Autowired
-	private ConnessioniRepository connessioniRepository;
+	public ConnessioniService(ConnessioniRepository connessioniRepository, KafkaEventProducer producer){
+		this.connessioniRepository = connessioniRepository;
+		this.producer = producer;
+	}
 
  	public Connessione createConnessione(String follower, String followed) {
 		Connessione connessione = new Connessione(follower, followed); 
 		connessione = connessioniRepository.save(connessione);
+		ConnessioneCreatedEvent event = new ConnessioneCreatedEvent(followed, follower);
+		producer.produce(event);
 		return connessione;
 	}
 

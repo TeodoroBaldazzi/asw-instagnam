@@ -1,8 +1,11 @@
 package asw.instagnam.commons.domain;
 
-import javax.persistence.*; 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.*; 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /* Ricetta, in formato completo. */ 
 @Entity

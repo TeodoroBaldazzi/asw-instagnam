@@ -3,10 +3,10 @@ package asw.instagnam.ricetteseguite.domain;
 import asw.instagnam.ricetteseguite.domain.exceptions.UserNotFoundException;
 import asw.instagnam.ricetteseguite.domain.repository.RicettaRepository;
 import asw.instagnam.ricetteseguite.domain.repository.UserRepository;
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*; 
+import java.util.Set;
 
 @Service 
 public class RicetteSeguiteService {

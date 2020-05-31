@@ -1,6 +1,7 @@
 package asw.instagnam.commons.domain;
 
-import lombok.*; 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /* Ricetta, in formato breve. */ 
 @Data @NoArgsConstructor

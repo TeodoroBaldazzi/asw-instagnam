@@ -1,6 +1,5 @@
 package asw.instagnam.ricetteseguite.domain;
 
-import asw.instagnam.ricetteseguite.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 
