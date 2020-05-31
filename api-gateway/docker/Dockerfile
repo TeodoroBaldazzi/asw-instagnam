@@ -4,7 +4,7 @@
 
 FROM openjdk:8-jdk 
 
-ADD build/libs/api-gateway.jar api-gateway.jar
+ADD ../build/libs/api-gateway.jar api-gateway.jar
 
 EXPOSE 8080
 

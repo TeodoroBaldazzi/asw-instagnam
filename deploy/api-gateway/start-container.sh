@@ -2,9 +2,9 @@
 
 echo Starting Api-gateway in a Docker Container
 
-kubectl apply -f Deployment-api-gateway.yaml
+kubectl apply -f deployment-api-gateway.yaml
 
-kubectl apply -f Service-api-gateway.yaml
+kubectl apply -f service-api-gateway.yaml
  
 sleep 10s
  

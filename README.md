@@ -1,63 +1,60 @@
 # INSTAGNAM 
 
-Progetto del corso di Analisi e progettazione del software per l'anno accademico 2019-2020. 
-
-
-## Descrizione di questo progetto 
-
-Questo progetto contiene il il codice di *Instagnam*, un semplice social-network per la condivisione di ricette di cucina. 
-Gli utenti del sistema possono pubblicare delle ricette. 
-Possono poi seguire altri utenti del sistema. 
-Quando un utente accede la pagina delle ricette che segue, gli vengono mostrate le ricette degli altri utenti che segue. 
-
-L'applicazione *Instagnam* è composta dai seguenti microservizi: 
-
-* Il servizio *ricette* gestisce le ricette di cucina dei suoi utenti. 
-  Ogni ricetta ha un autore, un titolo e una preparazione. 
-  Operazioni: 
-  * `POST /ricette` aggiunge una nuova ricetta (dato autore, titolo e preparazione)
-  * `GET /ricette/{id}` trova una ricetta dato l'id 
-  * `GET /ricette` trova tutte le ricette (in formato breve, solo id, autore e titolo)
-  * `GET /ricette?autore={autore}` trova tutte le ricette di autore (in formato breve, solo id, autore e titolo)
-  
-* Il servizio *connessioni* gestisce le connessioni tra gli utenti. 
-  Ogni connessione è una coppia follower-followed, in cui follower e followed sono due utenti del sistema. 
-  Operazioni: 
-  * `POST /connessioni` aggiunge una nuova connessione (dato follower e followed)
-  * `GET /connessioni/{id}` trova una connessione dato l’id 
-  * `GET /connessioni` trova tutte le connessioni
-  * `GET /connessioni?follower={utente}` trova tutte le connessioni di utente (quelle in cui l’utente è follower)
-
-* Il servizio *ricette-seguite* consente a un utente di trovare le ricette di tutti gli utenti che segue. 
-  Operazioni: 
-  * `GET /ricetteseguite/{utente}` trova tutte le ricette seguite da utente, ovvero le ricette di utenti di cui l’utente è follower (ricette in formato breve, trova solo id, autore e titolo)
-  
-* Il servizio *api-gateway* (esposto sulla porta *8080*) è l'API gateway dell'applicazione che: 
-  * espone il servizio *ricette* sul path `/ricette` - ad esempio, `GET /ricette/ricette`
-  * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioni`
-  * espone il servizio *ricette-seguite* sul path `/ricette-seguite` - ad esempio, `GET /ricette-seguite/ricetteseguite/{utente}`
-
-In questo progetto, l'implementazione dell'operazione `GET /ricetteseguite/U` del servizio *ricette-seguite*, 
-per trovare le ricette seguite dall'utente U, è basata su invocazioni remote REST ai servizi *connessioni* e *ricette*: 
-* prima viene invocata `GET /connessioni?follower=U` di *connessioni* 
-  per trovare l'insieme AA di tutti gli utenti seguiti dall'utente U 
-* poi, ripetutamente, per ciascun utente A nell'insieme AA, viene invocata `GET /ricette?autore=A` di *ricette*, 
-  in modo da trovare, complessivamente, le ricette degli autori nell'insieme degli utenti AA seguiti da U 
 
 
 ## Esecuzione 
 
 Per eseguire questo progetto: 
 
-* avviare *Consul* eseguendo lo script `start-consul.sh` 
+Ogni microservizio contiene due file .sh `start-build.sh` e   `start-container.sh` che fanno riferimento ai file *Dockerfile*,  *Deployment-nameMicroservice.yaml*, *Service-nameMicroservice.yaml*.
 
-* per avviare l'applicazione *Instagnam*, eseguire lo script `run-instagnam.sh` 
+Eseguendo il primo script menzionato, si crea l'immagine docker a partire dal dockerfile e succesivamente viene pushata sul docker registry, questo comprende anche i comandi `gradle clean` e `gradle build`.
 
-Alla fine, l'applicazione può essere arrestata usando lo script `stop-java-processes.sh` (**da usare con cautela!**). 
+Attualmente è presente nello script il mio user docker hub:
 
-Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
+modificando  *cmik/..* con *<user docker/registry>/..*. 
+
+Quindi cambiare anche il file  *Deployment-nameMicroservices.yaml* :
+
+modificando  *image: cmik/..* con *image: <user docker/registry>/..*
+
+**vi prego di modificare esclusivamente ciò che riguarda gli account personali**.
+
+Il lancio di ogni file .sh richiede il posizionamento all'interno della directory dove si trova il file script stesso.
+
+1. lanciare tutti i file start-build.sh (se non è stato modificato codice non è necessario eseguire questo file, potete direttamente eseguire gli script per la creazione dei container, che prenderanno l'ultima immagine nel vostro o nel mio registry Docker, *vi consiglio per le volte successive di eseguirlo sempre soprattuto se il git pull ha riportato la presenza di modifiche, in modo da rimanere tutti allineati*).
+
+2. posizionatevi sul main project directory (asw-instagnam) ed eseguite  `start-consul-container.sh ` , in una finestra del terminale dedicato, l'ultimo comando nel file .sh rimarrà appeso per tutto il tempo quindi  **non stoppatelo**.
+
+3. se tutto è andato a buon fine troverete l'interfaccia del service discovery all'indirizzo  `http://127.0.0.1:8500`
+
+4. posizionatevi sulla directory dell'api-gateway, quindi eseguite `start-api-gateway-container.sh ` in una finestra del terminale dedicato, quest'ultimo è disponibile all'indirizzo: `http://127.0.0.1:8080`
+
+5. eseguite il resto dei file.sh nelle stesse modalità sopra riportate, con la differenza che non rimane appeso nulla.
+
+Vi lascio alcuni comandi utili:
+
+1.  verifica dei deployment,pod,service e replicaset lanciati: `kubectl  --namespace=asw-project get all `  se  in READY è riportato un 0/1 cè qualcosa che non  va e consiglio di eseguire il comando successivo:
+
+2.  fornisce il log del pod, non che l'output di un comune java -jar, l'output di Spring: `kubectl logs --namespace=asw-project <nome del pod> ` 
+
+3. per eliminare un pod o un deployment o un service : `kubectl delete --namespace=asw-project pod/(deployment.apps/,service/) <nome del pod, deployment, servie> `
+  
+4. per la descrizione di un service   `kubectl describe svc --namespace=asw-project <name service> `
+  
+5. per la descrizione di un deployment   `kubectl describe deployment --namespace=asw-project <name deployment> ` 
+ 
+6. per la descrizione di un pod   `kubectl describe pod --namespace=asw-project <name pod> `
+
+7. per tutti gli altri comandi inserire il namespace in cui stiamo lavorando ` --namespace=asw-project `.
+
+Per la comunicazione tra microservizi non va usato un indirizzo ip e una porta, ma nell'application properties nel tag host va inserito: `<nome del service del microservizio con cui dovete comunicare>.asw-project.svc.cluster.local` questo ovviamente vale anche per la connessione con il db.
+  
+ex. consul-service.asw-project.svc.cluster.local
+
+Vi consiglio inoltre di ricordarvi di startare oltre a docker anche kubernetes, lo start di docker non è strettamente legato allo start di k8s. 
+Verificare che il context sia *docker desktop* e che il local cluster sia nello stato *enable*.
 
 
-## Descrizione delle attività da svolgere 
 
-Si veda il sito web del corso di [Architettura dei sistemi software](http://cabibbo.dia.uniroma3.it/asw/).
+
