@@ -35,7 +35,7 @@ L'applicazione *Instagnam* è composta dai seguenti microservizi:
 * Il servizio *api-gateway* (esposto sulla porta *8080*) è l'API gateway dell'applicazione che: 
   * espone il servizio *ricette* sul path `/ricette` - ad esempio, `GET /ricette`
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni`
-  * espone il servizio *ricette-seguite* sul path `/ricette-seguite` - ad esempio, `GET /ricetteseguite/{utente}`
+  * espone il servizio *ricette-seguite* sul path `/ricetteseguite` - ad esempio, `GET /ricetteseguite/{utente}`
 
 In questo progetto, l'implementazione dell'operazione `GET /ricetteseguite/U` del servizio *ricette-seguite*, 
 per trovare le ricette seguite dall'utente U, è basata su invocazioni remote REST ai servizi *connessioni* e *ricette*: 
