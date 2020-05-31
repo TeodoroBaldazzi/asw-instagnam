@@ -24,13 +24,17 @@ Il lancio di ogni file .sh richiede il posizionamento all'interno della director
 
 1. lanciare tutti i file start-build.sh (se non è stato modificato codice non è necessario eseguire questo file, potete direttamente eseguire gli script per la creazione dei container, che prenderanno l'ultima immagine nel vostro o nel mio registry Docker, *vi consiglio per le volte successive di eseguirlo sempre soprattuto se il git pull ha riportato la presenza di modifiche, in modo da rimanere tutti allineati*).
 
-2. posizionatevi sul main project directory (asw-instagnam) ed eseguite  `start-consul-container.sh ` , in una finestra del terminale dedicato, l'ultimo comando nel file .sh rimarrà appeso per tutto il tempo quindi  **non stoppatelo**.
+2. posizionatevi sulla directory dell'api-gateway, quindi eseguite `start-api-gateway-container.sh ` in una finestra del terminale dedicato, quest'ultimo è disponibile all'indirizzo: `http://127.0.0.1:8080`
 
-3. se tutto è andato a buon fine troverete l'interfaccia del service discovery all'indirizzo  `http://127.0.0.1:8500`
+ per fare le richieste:
+   `http://127.0.0.1:8080/ricette`
+   `http://127.0.0.1:8080/ricette/{id}`
+   `http://127.0.0.1:8080/ricette?autore=utente`
+   `http://127.0.0.1:8080/ricetteseguite/{utente}`
+   `http://127.0.0.1:8080/connessioni`
+    etc....
 
-4. posizionatevi sulla directory dell'api-gateway, quindi eseguite `start-api-gateway-container.sh ` in una finestra del terminale dedicato, quest'ultimo è disponibile all'indirizzo: `http://127.0.0.1:8080`
-
-5. eseguite il resto dei file.sh nelle stesse modalità sopra riportate, con la differenza che non rimane appeso nulla.
+3. eseguite il resto dei file.sh nelle stesse modalità sopra riportate, con la differenza che non rimane appeso nulla.
 
 Vi lascio alcuni comandi utili:
 
