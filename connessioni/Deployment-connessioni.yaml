@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: asw-connessioni
-        image: cmik/connessioni
+        image: cmik/connessioni:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8180
