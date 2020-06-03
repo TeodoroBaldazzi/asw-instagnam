@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk 
 
-ADD ../build/libs/connessioni.jar connessioni.jar
+ADD /build/libs/connessioni.jar connessioni.jar
 
 EXPOSE 8080
 

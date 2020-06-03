@@ -4,20 +4,23 @@ metadata:
   name: ricette-deployment
   namespace: asw-project
   labels:
-    app: ricette
+    app: instagnam
+    service: ricette
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: ricette
+      app: instagnam
+      service: ricette
   template:
     metadata:
       labels:
-        app: ricette
+        app: instagnam
+        service: ricette
     spec:
       containers:
       - name: asw-ricette
-        image: cmik/ricette:v1
+        image: cmik/ricette:1.1.2
         imagePullPolicy: Always
         ports:
-        - containerPort: 8180
+        - containerPort: 8080

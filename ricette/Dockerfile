@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk 
 
-ADD ../build/libs/ricette.jar ricette.jar
+ADD /build/libs/ricette.jar ricette.jar
 
 EXPOSE 8080
 

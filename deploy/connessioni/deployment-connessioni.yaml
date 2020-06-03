@@ -4,20 +4,23 @@ metadata:
   name: connessioni-deployment
   namespace: asw-project
   labels:
-    app: connessioni
+    app: instagnam
+    service: connessioni
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: connessioni
+      app: instagnam
+      service: connessioni
   template:
     metadata:
       labels:
-        app: connessioni
+        app: instagnam
+        service: connessioni
     spec:
       containers:
       - name: asw-connessioni
-        image: cmik/connessioni:v1
+        image: cmik/connessioni:1.1.2
         imagePullPolicy: Always
         ports:
-        - containerPort: 8180
+        - containerPort: 8080
