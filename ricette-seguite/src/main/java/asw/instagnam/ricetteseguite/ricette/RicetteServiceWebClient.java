@@ -1,7 +1,6 @@
 package asw.instagnam.ricetteseguite.ricette;
 
-import asw.instagnam.ricetteseguite.domain.*; 
-
+import asw.instagnam.ricetteseguite.domain.entities.Ricetta;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +9,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientException;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.*; 
 

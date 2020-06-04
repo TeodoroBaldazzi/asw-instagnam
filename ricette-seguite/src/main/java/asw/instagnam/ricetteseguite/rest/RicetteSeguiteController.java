@@ -1,6 +1,6 @@
 package asw.instagnam.ricetteseguite.rest;
 
-import asw.instagnam.ricetteseguite.domain.Ricetta;
+import asw.instagnam.ricetteseguite.domain.entities.Ricetta;
 import asw.instagnam.ricetteseguite.domain.RicetteSeguiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +26,7 @@ public class RicetteSeguiteController {
 	@GetMapping("/ricetteseguite/{utente}")
 	public Collection<Ricetta> getRicetteSeguite(@PathVariable String utente) {
 		logger.info("REST CALL: getRicetteSeguite " + utente); 
-		Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente); 
+		Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente);
 		logger.info("getRicetteSeguite(): " + ricette);
 		return ricette; 
 	}

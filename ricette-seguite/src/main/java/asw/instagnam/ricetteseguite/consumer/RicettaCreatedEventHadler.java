@@ -12,8 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class RicettaCreatedEventHadler {
 
+    private final RicetteSeguiteService service;
+
     @Autowired
-    private RicetteSeguiteService service;
+    public RicettaCreatedEventHadler(RicetteSeguiteService service) {
+        this.service = service;
+    }
 
     @KafkaListener(topics = {Topic.RICETTE_TOPIC})
     public void listen(ConsumerRecord<String, DomainEvent> evt){

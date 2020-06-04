@@ -5,9 +5,11 @@ import asw.instagnam.commons.producer.RicetteEventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Service
+@Transactional
 public class RicetteService {
 
 	private final RicetteRepository ricetteRepository;
