@@ -30,18 +30,15 @@ public class ConnessioniService {
 	}
 
  	public Connessione getConnessione(Long id) {
-		Connessione connessione = connessioniRepository.findById(id).orElse(null);
-		return connessione;
+		return connessioniRepository.findById(id).orElse(null);
 	}
 
  	public Collection<Connessione> getConnessioni() {
-		Collection<Connessione> connessioni = connessioniRepository.findAll();
-		return connessioni;
+		return connessioniRepository.findAll();
 	}
 
 	public Collection<Connessione> getConnessioniByFollower(String follower) {
-		Collection<Connessione> connessioni = connessioniRepository.findAllByFollower(follower);
-		return connessioni;
+		return connessioniRepository.findAllByFollower(follower);
 	}
 
 }

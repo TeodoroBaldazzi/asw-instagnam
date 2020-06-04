@@ -13,10 +13,14 @@ import java.util.logging.Logger;
 @RestController
 public class ConnessioniController {
 
-	@Autowired 
-	private ConnessioniService connessioniService; 
+	private final ConnessioniService connessioniService;
 
-	private final Logger logger = Logger.getLogger(ConnessioniController.class.toString()); 
+	private final Logger logger = Logger.getLogger(ConnessioniController.class.toString());
+
+	@Autowired
+	public ConnessioniController(ConnessioniService connessioniService) {
+		this.connessioniService = connessioniService;
+	}
 
 	/* Crea una nuova connessione. 
 	* la richiesta contiene nel corpo una stringa della forma follower:followed */ 
@@ -24,9 +28,8 @@ public class ConnessioniController {
 	public Connessione createConnessione(@RequestBody CreateConnessioneRequest request) {
 		String follower = request.getFollower();
 		String followed = request.getFollowed();
-		logger.info("REST CALL: createConnessione " + follower + ", " + followed); 
-		Connessione connessione = connessioniService.createConnessione(follower, followed);
-		return connessione; 
+		logger.info("REST CALL: createConnessione " + follower + ", " + followed);
+		return connessioniService.createConnessione(follower, followed);
 	}	
 
 	/* Trova la connessione con connessioneId. */ 

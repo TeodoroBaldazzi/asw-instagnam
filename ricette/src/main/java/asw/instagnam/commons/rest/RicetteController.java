@@ -15,10 +15,14 @@ import java.util.stream.Collectors;
 @RestController
 public class RicetteController {
 
-	@Autowired 
-	private RicetteService ricetteService; 
+	private final RicetteService ricetteService;
 
-	private final Logger logger = Logger.getLogger(RicetteController.class.toString()); 
+	private final Logger logger = Logger.getLogger(RicetteController.class.toString());
+
+	@Autowired
+	public RicetteController(RicetteService ricetteService) {
+		this.ricetteService = ricetteService;
+	}
 
 	/* Crea un nuovo ristorante. 
 	* la richiesta contiene nel corpo autore e titolo */ 

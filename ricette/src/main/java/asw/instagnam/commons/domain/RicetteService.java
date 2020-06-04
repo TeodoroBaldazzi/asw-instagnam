@@ -28,18 +28,15 @@ public class RicetteService {
 	}
 
  	public RicettaCompleta getRicetta(Long id) {
-		RicettaCompleta ricetta = ricetteRepository.findById(id).orElse(null);
-		return ricetta;
+		return ricetteRepository.findById(id).orElse(null);
 	}
 
 	public Collection<RicettaCompleta> getRicette() {
-		Collection<RicettaCompleta> ricette = ricetteRepository.findAll();
-		return ricette;
+		return ricetteRepository.findAll();
 	}
 
 	public Collection<RicettaCompleta> getRicetteByAutore(String autore) {
-		Collection<RicettaCompleta> ricette = ricetteRepository.findAllByAutore(autore);
-		return ricette;
+		return ricetteRepository.findAllByAutore(autore);
 	}
 
 }
