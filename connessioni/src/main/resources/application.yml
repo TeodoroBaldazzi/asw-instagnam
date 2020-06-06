@@ -3,6 +3,24 @@
 spring: 
   application: 
     name: connessioni
+  # POSTGRESQL
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: create
+      use-new-id-generator-mappings: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL82Dialect
+        jdbc:
+          lob:
+            non_contextual_creation: true 
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${DOCKER_HOST_IP:localhost}/connessioniservice
+    username: postgres
+    password: postgres
+  # KAFKA    
   kafka:
     consumer:
       group-id: ${spring.application.name}
