@@ -2,7 +2,6 @@ package asw.instagnam.commons.domain;
 
 import asw.instagnam.common.event.RicettaCreatedEvent;
 import asw.instagnam.commons.producer.RicetteEventProducer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
