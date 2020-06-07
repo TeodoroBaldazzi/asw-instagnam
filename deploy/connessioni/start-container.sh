@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Starting Connsessioni Microservice in a Docker Container
+echo Starting Connessioni Microservice in a Docker Container
 
 kubectl apply -f deployment-connessioni.yaml
 
