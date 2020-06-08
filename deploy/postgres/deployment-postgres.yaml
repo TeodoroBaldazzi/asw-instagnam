@@ -1,27 +1,36 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: postgres
+  name: postgres-deployment
+  namespace: asw-project
+  labels:
+    app: instagnam
+    service: postgres
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: instagnam
+      service: postgres
   template:
     metadata:
       labels:
-        app: postgres
+        app: instagnam
+        service: postgres
     spec:
       containers:
-        - name: postgres
-          image: postgres:10.4
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: postgres-config
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
+      - name: asw-postgres
+        image: cmik/postgres:10.13
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5432
+        envFrom:
+          - configMapRef:
+              name: postgres-config
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgresdb
       volumes:
-        - name: postgredb
+        - name: postgresdb
           persistentVolumeClaim:
             claimName: postgres-pv-claim

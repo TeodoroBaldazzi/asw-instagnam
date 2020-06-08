@@ -2,9 +2,7 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: postgres-pv-volume
-  labels:
-    type: local
-    app: postgres
+  namespace: asw-project
 spec:
   storageClassName: manual
   capacity:
@@ -18,8 +16,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: postgres-pv-claim
-  labels:
-    app: postgres
+  namespace: asw-project
 spec:
   storageClassName: manual
   accessModes:

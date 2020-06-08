@@ -2,8 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-config
-  labels:
-    app: postgres
+  namespace: asw-project
 data:
   POSTGRES_DB: postgresdb
   POSTGRES_USER: postgres
