@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Starting Postgres Microservice in a Docker Container
+echo Starting Postgres Ricette Microservice in a Docker Container
 
 kubectl apply -f postgres-ricette-configmap.yaml
 kubectl apply -f postgres-storage-ricette.yaml
