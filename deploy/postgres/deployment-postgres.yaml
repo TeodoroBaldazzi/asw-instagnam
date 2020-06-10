@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: asw-postgres
-        image: cmik/postgres:10.13
+        image: postgres:12.3
         imagePullPolicy: Always
         ports:
           - containerPort: 5432
