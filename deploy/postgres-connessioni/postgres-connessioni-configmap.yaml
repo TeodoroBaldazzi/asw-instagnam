@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-connessioni-config
+  namespace: asw-project
+data:
+  POSTGRES_DB: postgresdb-connesioni
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
