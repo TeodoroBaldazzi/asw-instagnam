@@ -17,7 +17,7 @@ spring:
             non_contextual_creation: true 
   datasource:
     platform: postgres
-    url: jdbc:postgresql://postgres-ricette-seguite-service.asw-project.svc.cluster.local:5432/postgresdb-ricette-seguite
+    url: jdbc:postgresql://postgres-ricette-seguite-service.asw-project.svc.cluster.local:5432/postgresdb
     # url: jdbc:postgresql://postgres-service.asw-project.svc.cluster.local:5432/postgresdb-ricette-seguite
     username: postgres
     password: postgres
