@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Building Microservices
+echo Building RICETTE-SEGUITE Microservices
 
 gradle clean
 

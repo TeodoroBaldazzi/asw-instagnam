@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Building Microservices
+echo Building API-GATEWAY Microservices
 
 gradle clean
 
