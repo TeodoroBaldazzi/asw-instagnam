@@ -17,7 +17,7 @@ spring:
             non_contextual_creation: true 
   datasource:
     platform: postgres
-    url: jdbc:postgresql://${DOCKER_HOST_IP:localhost}/ricetteseguiteservice
+    url: jdbc:postgresql://postgres-service.asw-project.svc.cluster.local:5432/ricetteseguiteservice
     username: postgres
     password: postgres
   # KAFKA    
@@ -30,7 +30,7 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    bootstrap-servers: #ip-kafka
+    bootstrap-servers: #http://kafka-service.asw-project.svc.cluster.local:9092
 
 server:
   #port: ${PORT:${SERVER_PORT:0}}
