@@ -30,7 +30,7 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    bootstrap-servers: #http://kafka-service.asw-project.svc.cluster.local:9092
+    bootstrap-servers: http://kafka-service.asw-project.svc.cluster.local:9092
 
 server: 
   #port: ${PORT:${SERVER_PORT:0}}
