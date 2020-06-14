@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: postgres-ricette-config
-  namespace: asw-project
-data:
-  POSTGRES_DB: postgresdb-ricette
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: postgres
