@@ -22,17 +22,21 @@ public class RicetteService {
 		this.ricetteRepository = ricetteRepository;
 		this.domainEventProducer = domainEventProducer;
 	}
+	
+	public boolean existsRicetta(String autore,String titolo) {
+    	return ricetteRepository.existsByAutoreAndTitolo(autore, titolo);
+    }
 
 	public RicettaCompleta createRicetta(String autore, String titolo, String preparazione) {
 		RicettaCompleta ricetta = new RicettaCompleta(getLongIdFromUUID(), autore, titolo, preparazione); 
 		ricetta = ricetteRepository.save(ricetta);
-		DomainEvent event = new RicettaCreatedEvent(ricetta.getId(), ricetta.getAutore(), ricetta.getTitolo());
+		DomainEvent event = new RicettaCreatedEvent(ricetta.getUuid(), ricetta.getAutore(), ricetta.getTitolo());
 		domainEventProducer.produce(event);
 		return ricetta;
 	}
 
  	public RicettaCompleta getRicetta(Long id) {
-		return ricetteRepository.findById(id).orElse(null);
+		return ricetteRepository.findByUuid(id);
 	}
 
 	public Collection<RicettaCompleta> getRicette() {

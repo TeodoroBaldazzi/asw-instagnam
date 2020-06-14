@@ -1,15 +1,19 @@
 package asw.instagnam.connessioni.domain.repositories;
 
 import asw.instagnam.connessioni.domain.entities.Connessione;
-import org.springframework.data.repository.CrudRepository;
+import asw.instagnam.connessioni.domain.entities.ConnessioneId;
 
-import java.util.Collection;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ConnessioniRepository extends CrudRepository<Connessione, Long> {
+import java.util.List;
 
-	public Collection<Connessione> findAll();
+public interface ConnessioniRepository extends JpaRepository<Connessione, ConnessioneId> {
 
-	public Collection<Connessione> findAllByFollower(String follower);
-
+	public List<Connessione> findAll();
+    
+	public boolean existsByFollowerAndFollowed(String follower, String followed);
+	
+	public List<Connessione> findAllByFollower(String follower);
+	
+	public Connessione findByUuid(Long id);
 }
-

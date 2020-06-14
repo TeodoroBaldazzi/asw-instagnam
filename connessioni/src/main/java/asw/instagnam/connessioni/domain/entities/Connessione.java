@@ -13,15 +13,15 @@ import javax.persistence.IdClass;
 @Data @NoArgsConstructor
 public class Connessione {
 
-	private Long id;
+	private Long uuid;
 	@Id 
 	private String follower;
 	@Id
 	private String followed; 
 	
 	public Connessione(Long id, String follower, String followed) {
-		this(); 
-		this.id = id;
+		this();
+		this.uuid = id;
 		this.follower = follower; 
 		this.followed = followed; 
 	}

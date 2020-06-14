@@ -1,15 +1,19 @@
 package asw.instagnam.ricette.domain.repositories;
 
 import asw.instagnam.ricette.domain.entities.RicettaCompleta;
-import org.springframework.data.repository.CrudRepository;
 
-import java.util.Collection;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RicetteRepository extends CrudRepository<RicettaCompleta, Long> {
+import java.util.List;
 
-	public Collection<RicettaCompleta> findAll();
+public interface RicetteRepository extends JpaRepository<RicettaCompleta, Long> {
 
-	public Collection<RicettaCompleta> findAllByAutore(String autore);
+	public List<RicettaCompleta> findAll();
+    
+	public boolean existsByAutoreAndTitolo(String autore, String titolo);
+	
+	public List<RicettaCompleta> findAllByAutore(String autore);
+	
+	public RicettaCompleta findByUuid(Long id);
 
 }
-

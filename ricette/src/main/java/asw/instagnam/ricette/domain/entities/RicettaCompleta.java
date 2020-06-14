@@ -14,7 +14,7 @@ import javax.persistence.IdClass;
 @Data @NoArgsConstructor
 public class RicettaCompleta {
 
-	private Long id;
+	private Long uuid;
 	@Id 
 	private String autore;
 	@Id
@@ -23,7 +23,7 @@ public class RicettaCompleta {
 	
 	public RicettaCompleta(Long id, String autore, String titolo, String preparazione) {
 		this();
-		this.id = id;
+		this.uuid = id;
 		this.autore = autore; 
 		this.titolo = titolo; 
 		this.preparazione = preparazione; 

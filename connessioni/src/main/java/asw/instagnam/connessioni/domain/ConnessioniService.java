@@ -22,18 +22,21 @@ public class ConnessioniService {
 		this.connessioniRepository = connessioniRepository;
 		this.domainEventProducer = domainEventProducer;
 	}
-
+	
+    public boolean existsConnessione(String follower,String followed) {
+    	return connessioniRepository.existsByFollowerAndFollowed(follower, followed);
+    }
 
 	public Connessione createConnessione(String follower, String followed) {
 		Connessione connessione = new Connessione(getLongIdFromUUID(), follower, followed); 
 		connessione = connessioniRepository.save(connessione);
-		DomainEvent event = new ConnessioneCreatedEvent(connessione.getId(), connessione.getFollower(), connessione.getFollowed());
+		DomainEvent event = new ConnessioneCreatedEvent(connessione.getUuid(), connessione.getFollower(), connessione.getFollowed());
 		domainEventProducer.produce(event);
 		return connessione;
 	}
 
- 	public Connessione getConnessione(Long id) {
-		Connessione connessione = connessioniRepository.findById(id).orElse(null);
+	public Connessione getConnessione(Long id) {
+		Connessione connessione = connessioniRepository.findByUuid(id);;
 		return connessione;
 	}
 
