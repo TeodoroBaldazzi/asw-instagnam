@@ -1,12 +1,13 @@
 package asw.instagnam.ricette.domain.repositories;
 
 import asw.instagnam.ricette.domain.entities.RicettaCompleta;
+import asw.instagnam.ricette.domain.entities.RicettaId;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RicetteRepository extends JpaRepository<RicettaCompleta, Long> {
+public interface RicetteRepository extends JpaRepository<RicettaCompleta, RicettaId> {
 
 	public List<RicettaCompleta> findAll();
     
