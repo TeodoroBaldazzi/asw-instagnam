@@ -15,18 +15,14 @@ public class RicetteSeguiteController {
 
 	private final Logger logger = Logger.getLogger(RicetteSeguiteController.class.toString()); 
 
-	private final RicetteSeguiteService ricetteSeguiteService;
-
-	@Autowired
-	public RicetteSeguiteController(RicetteSeguiteService ricetteSeguiteService) {
-		this.ricetteSeguiteService = ricetteSeguiteService;
-	}
+	@Autowired 
+	private RicetteSeguiteService ricetteSeguiteService;
 
 	/* Trova le ricette (in formato breve) degli utenti seguiti da utente. */ 
 	@GetMapping("/ricetteseguite/{utente}")
 	public Collection<Ricetta> getRicetteSeguite(@PathVariable String utente) {
 		logger.info("REST CALL: getRicetteSeguite " + utente); 
-		Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente);
+		Collection<Ricetta> ricette = ricetteSeguiteService.getRicetteSeguite(utente); 
 		logger.info("getRicetteSeguite(): " + ricette);
 		return ricette; 
 	}

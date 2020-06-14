@@ -18,19 +18,32 @@ spec:
         app: instagnam
         service: postgres-ricette
     spec:
+      volumes:
+      - name: data-ricette
+        emptyDir: {}
       containers:
       - name: asw-postgres-ricette
-        image: postgres:12.3
+        image: postgres:9.6.5
         imagePullPolicy: Always
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+           secretKeyRef:
+              name: db-security
+              key: db.user.name
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+                name: db-security
+                key: db.user.password
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+                name: postgres-config-ricette
+                key: postgres.db.name
         ports:
           - containerPort: 5432
-        envFrom:
-          - configMapRef:
-              name: postgres-ricette-config
+        
         volumeMounts:
-          - mountPath: /var/lib/postgresql/data
-            name: postgresdb-ricette
-      volumes:
-        - name: postgresdb-ricette
-          persistentVolumeClaim:
-            claimName: postgres-ricette-pv-claim
+        - name: data-ricette
+          mountPath: /var/lib/postgresql/

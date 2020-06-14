@@ -1,6 +1,6 @@
 package asw.instagnam.connessioni.rest;
 
-import asw.instagnam.connessioni.domain.Connessione;
+import asw.instagnam.connessioni.domain.entities.Connessione;
 import asw.instagnam.connessioni.domain.ConnessioniService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,14 +13,10 @@ import java.util.logging.Logger;
 @RestController
 public class ConnessioniController {
 
-	private final ConnessioniService connessioniService;
+	@Autowired 
+	private ConnessioniService connessioniService; 
 
-	private final Logger logger = Logger.getLogger(ConnessioniController.class.toString());
-
-	@Autowired
-	public ConnessioniController(ConnessioniService connessioniService) {
-		this.connessioniService = connessioniService;
-	}
+	private final Logger logger = Logger.getLogger(ConnessioniController.class.toString()); 
 
 	/* Crea una nuova connessione. 
 	* la richiesta contiene nel corpo una stringa della forma follower:followed */ 
@@ -28,8 +24,15 @@ public class ConnessioniController {
 	public Connessione createConnessione(@RequestBody CreateConnessioneRequest request) {
 		String follower = request.getFollower();
 		String followed = request.getFollowed();
-		logger.info("REST CALL: createConnessione " + follower + ", " + followed);
-		return connessioniService.createConnessione(follower, followed);
+		if(!connessioniService.existsConnessione(follower, followed)) {
+		logger.info("REST CALL: createConnessione " + follower + ", " + followed); 
+		Connessione connessione = connessioniService.createConnessione(follower, followed);
+		return connessione; }
+		else {
+			throw new ResponseStatusException(
+				HttpStatus.BAD_REQUEST, "La connessione è stata già inserita"
+			);
+		}
 	}	
 
 	/* Trova la connessione con connessioneId. */ 

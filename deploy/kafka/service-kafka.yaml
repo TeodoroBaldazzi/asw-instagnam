@@ -16,11 +16,7 @@ spec:
   - name: kafka-port
     protocol: TCP
     port: 9092
-#  type: NodePort
-#  ports:
-#  - name: kafka-port
-#    protocol: TCP
-#    port: 30718
+    
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -36,3 +32,4 @@ spec:
       backend:
         serviceName: kafka-service
         servicePort: 9092
+ 

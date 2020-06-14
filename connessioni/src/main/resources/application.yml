@@ -5,20 +5,15 @@ spring:
     name: connessioni
   # POSTGRESQL
   jpa:
-    database: POSTGRESQL
+   
     hibernate:
       ddl-auto: create
-      use-new-id-generator-mappings: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQL82Dialect
-        jdbc:
-          lob:
-            non_contextual_creation: true 
+  
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://postgres-connessioni-service.asw-project.svc.cluster.local:5432/postgresdb
-    # url: jdbc:postgresql://postgres-service.asw-project.svc.cluster.local:5432/postgresdb-connessioni
+    driver-class-name: org.postgresql.Driver
+
+    url: jdbc:postgresql://postgres-connessioni-service.asw-project.svc.cluster.local:5432/connessionidb
+    
     username: postgres
     password: postgres
   # KAFKA    
@@ -28,10 +23,14 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      bootstrap-servers: http://kafka-service.asw-project.svc.cluster.local:9092
+      properties:
+           spring.json.trusted.packages: "*"
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    bootstrap-servers: http://kafka-service.asw-project.svc.cluster.local:9092
+      bootstrap-servers: http://kafka-service.asw-project.svc.cluster.local:9092
+      
 
 server: 
   #port: ${PORT:${SERVER_PORT:0}}

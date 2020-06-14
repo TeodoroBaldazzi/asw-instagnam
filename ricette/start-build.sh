@@ -6,6 +6,6 @@ gradle clean
 
 gradle build
 
-docker build -t cmik/ricette:1.2.2 .
+docker build -t cmik/ricette:5.0.5 .
 
-docker push cmik/ricette:1.2.2
+docker push cmik/ricette:5.0.5

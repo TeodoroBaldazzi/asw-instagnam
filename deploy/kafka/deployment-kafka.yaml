@@ -28,10 +28,8 @@ spec:
         - name: KAFKA_ADVERTISED_HOST_NAME
           value: kafka-service.asw-project.svc.cluster.local
         - name: KAFKA_ZOOKEEPER_CONNECT
-          value: zoo1-service:2181
+          value: zoo1-service.asw-project.svc.cluster.local:2181
         - name: KAFKA_BROKER_ID
           value: "0"
         - name: KAFKA_CREATE_TOPICS
-          value: ricette-topic
-        - name: KAFKA_CREATE_TOPICS
-          value: connessione-topic
+          value: ricette-topic:2:1,connessioni-topic:2:1

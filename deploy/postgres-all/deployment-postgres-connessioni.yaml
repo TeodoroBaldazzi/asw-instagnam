@@ -18,19 +18,33 @@ spec:
         app: instagnam
         service: postgres-connessioni
     spec:
+      volumes:
+      - name: data
+        emptyDir: {}
       containers:
       - name: asw-postgres-connessioni
-        image: postgres:12.3
+        image: postgres:9.6.5
         imagePullPolicy: Always
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+           secretKeyRef:
+              name: db-security
+              key: db.user.name
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+                name: db-security
+                key: db.user.password
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+                name: postgres-config
+                key: postgres.db.name
+        
         ports:
           - containerPort: 5432
-        envFrom:
-          - configMapRef:
-              name: postgres-connessioni-config
         volumeMounts:
-          - mountPath: /var/lib/postgresql/data
-            name: postgresdb-connessioni
-      volumes:
-        - name: postgresdb-connessioni
-          persistentVolumeClaim:
-            claimName: postgres-connessioni-pv-claim
+        - name: data
+          mountPath: /var/lib/postgresql/
+      
