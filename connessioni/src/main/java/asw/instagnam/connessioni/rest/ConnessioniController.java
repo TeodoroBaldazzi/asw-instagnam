@@ -30,7 +30,7 @@ public class ConnessioniController {
 		return connessione; }
 		else {
 			throw new ResponseStatusException(
-				HttpStatus.BAD_REQUEST, "La connessione è stata già inserita"
+				HttpStatus.BAD_REQUEST, "Connessione already present"
 			);
 		}
 	}	
