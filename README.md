@@ -16,7 +16,7 @@ Ogni microservizio contiene un file .sh `start-build.sh` che fariferimento al fi
 
 Il lancio di ogni build .sh richiede il posizionamento all'interno della directory dove si trova il file script stesso.
 
-Per effettuare il bootstrap posizionarsi nella cartella del progetto ed eseguire `start-all-container.sh ` 
+Per effettuare il bootstrap posizionarsi nella cartella del progetto ed eseguire `Start.yaml ` 
 
 La richiesta ad un microservizio ha la seguente struttura: `http://instagnam/ricette/*`, `http://instagnam/connessioni/*`,`http://instagnam/ricetteseguite/*`
 
