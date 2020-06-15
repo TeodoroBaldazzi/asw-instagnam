@@ -19,7 +19,7 @@ public class Connessione {
 	@Id
 	private String followed;
 
-	public Connessione(String follower, String followed) {
+	public Connessione(String followed, String follower) {
 		this(); 
 		this.follower = follower; 
 		this.followed = followed; 
