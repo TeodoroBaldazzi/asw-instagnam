@@ -20,7 +20,7 @@ Per effettuare il bootstrap posizionarsi nella cartella del progetto ed eseguire
 
 La richiesta ad un microservizio ha la seguente struttura: `http://instagnam/ricette/*`, `http://instagnam/connessioni/*`,`http://instagnam/ricetteseguite/*`
 
-Il file richieste.sh contiene la richiesta per l'aggiunta di una nuova ricette, di una nuova connessione e la richiesta per aggiungere una ricetta e una connessione già presente, a quest'ultime due verrà risposto con un messaggio di errore.
+Il file richieste.sh contiene le richiesta per l'aggiunta di una nuova ricetta, di una nuova connessione e le richieste per aggiungere una ricetta e una connessione già presenti, a quest'ultime due verrà risposto con un messaggio di errore.
 
 
 
